@@ -1,0 +1,9 @@
+*.config
+*.files
+*.includes
+*.cflags
+*.cxxflags
+*.creator
+*.creator.user
+*.idea
+
