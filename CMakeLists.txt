@@ -82,66 +82,62 @@ if(NOT MSVC)
 endif()
 target_link_libraries(qt_tutorial ${qt_tutorial_LIBRARIES})
 
-#if (PROJECT_IS_CATKIN_BUILT)
-#    set(CATKIN_COMPONENTS_REQUIRED
-#        rqt_gui
-#        rqt_gui_cpp
-#        roslib
-#        image_transport
-#        sensor_msgs
-#        cv_bridge
-#        )
+if (PROJECT_IS_CATKIN_BUILT)
+    set(CATKIN_COMPONENTS_REQUIRED
+        rqt_gui
+        rqt_gui_cpp
+        roslib
+        )
 
-#    find_package(catkin REQUIRED COMPONENTS ${CATKIN_COMPONENTS_REQUIRED})
+    find_package(catkin REQUIRED COMPONENTS ${CATKIN_COMPONENTS_REQUIRED})
 
-#    include_directories(${catkin_INCLUDE_DIRS})
+    include_directories(${catkin_INCLUDE_DIRS})
 
-#    ################
-#    # rqt_tutorial #
-#    ################
+    ################
+    # rqt_tutorial #
+    ################
 
-#    set(rqt_tutorial_SRCS
-#        ${COMMON_HEADER_FILES}
-#        ${COMMON_SOURCE_FILES}
-#        rqt_tutorial/src/rqt_tutorial.cpp
-#        )
-#    set(rqt_tutorial_UIS
-#        rqt_tutorial/src/rqt_tutorial.ui
-#        )
-#    set(rqt_tutorial_HDRS
-#        rqt_tutorial/include/rqt_tutorial.h
-#        )
+    set(rqt_tutorial_SRCS
+        ${COMMON_HEADER_FILES}
+        ${COMMON_SOURCE_FILES}
+        rqt_tutorial/src/rqt_tutorial.cpp
+        )
+    set(rqt_tutorial_UIS
+        rqt_tutorial/src/rqt_tutorial.ui
+        )
+    set(rqt_tutorial_HDRS
+        rqt_tutorial/include/rqt_tutorial.h
+        )
 
-#    if(NOT EXISTS "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
-#        file(MAKE_DIRECTORY "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
-#    endif()
+    if(NOT EXISTS "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
+        file(MAKE_DIRECTORY "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
+    endif()
 
-#    set(rqt_tutorial_INCLUDE_DIRECTORIES
-#        rqt_tutorial/include
-#        "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}"
-#        )
-#    include_directories(${rqt_tutorial_INCLUDE_DIRECTORIES})
+    set(rqt_tutorial_INCLUDE_DIRECTORIES
+        rqt_tutorial/include
+        "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}"
+        )
+    include_directories(${rqt_tutorial_INCLUDE_DIRECTORIES})
 
-#    catkin_package(INCLUDE_DIRS ${rqt_tutorial_INCLUDE_DIRECTORIES}
-#                   LIBRARIES rqt_tutorial
-#                   CATKIN_DEPENDS ${CATKIN_COMPONENTS_REQUIRED}
-#                   )
-#    catkin_python_setup()
+    catkin_package(INCLUDE_DIRS ${rqt_tutorial_INCLUDE_DIRECTORIES}
+                   LIBRARIES rqt_tutorial
+                   CATKIN_DEPENDS ${CATKIN_COMPONENTS_REQUIRED}
+                   )
+    catkin_python_setup()
 
-#    qt5_wrap_cpp(rqt_tutorial_MOCS ${rqt_tutorial_HDRS})
+    qt5_wrap_cpp(rqt_tutorial_MOCS ${rqt_tutorial_HDRS})
 
-#    set(_cmake_current_binary_dir "${CMAKE_CURRENT_BINARY_DIR}")
-#    set(CMAKE_CURRENT_BINARY_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
-#    qt5_wrap_ui(rqt_tutorial_UIS_H ${rqt_tutorial_UIS})
-#    set(CMAKE_CURRENT_BINARY_DIR "${_cmake_current_binary_dir}")
+    set(_cmake_current_binary_dir "${CMAKE_CURRENT_BINARY_DIR}")
+    set(CMAKE_CURRENT_BINARY_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
+    qt5_wrap_ui(rqt_tutorial_UIS_H ${rqt_tutorial_UIS})
+    set(CMAKE_CURRENT_BINARY_DIR "${_cmake_current_binary_dir}")
 
-#    add_library(rqt_tutorial ${rqt_tutorial_SRCS} ${rqt_tutorial_MOCS} ${rqt_tutorial_UIS_H})
-#    target_link_libraries(rqt_tutorial ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} Qt5::Widgets)
+    add_library(rqt_tutorial ${rqt_tutorial_SRCS} ${rqt_tutorial_MOCS} ${rqt_tutorial_UIS_H})
+    target_link_libraries(rqt_tutorial ${catkin_LIBRARIES} Qt5::Widgets)
 
-#    find_package(class_loader)
-#    class_loader_hide_library_symbols(rqt_tutorial)
+    find_package(class_loader)
+    class_loader_hide_library_symbols(rqt_tutorial)
 
-#    catkin_install_python(PROGRAMS scripts/rqt_tutorial
-#                          DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-#endif ()
-
+    catkin_install_python(PROGRAMS scripts/rqt_tutorial
+                          DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+endif ()

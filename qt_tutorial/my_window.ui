@@ -308,6 +308,5 @@
  <connections/>
  <buttongroups>
   <buttongroup name="options_button_group"/>
-  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

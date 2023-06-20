@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 
+// Forward declarations
 namespace Ui {
     class MyWindow;
 }
