@@ -82,11 +82,16 @@ if(NOT MSVC)
 endif()
 target_link_libraries(qt_tutorial ${qt_tutorial_LIBRARIES})
 
+################
+# ROS specific #
+################
+
 if (PROJECT_IS_CATKIN_BUILT)
     set(CATKIN_COMPONENTS_REQUIRED
         rqt_gui
         rqt_gui_cpp
         roslib
+        std_msgs
         )
 
     find_package(catkin REQUIRED COMPONENTS ${CATKIN_COMPONENTS_REQUIRED})
@@ -133,7 +138,7 @@ if (PROJECT_IS_CATKIN_BUILT)
     set(CMAKE_CURRENT_BINARY_DIR "${_cmake_current_binary_dir}")
 
     add_library(rqt_tutorial ${rqt_tutorial_SRCS} ${rqt_tutorial_MOCS} ${rqt_tutorial_UIS_H})
-    target_link_libraries(rqt_tutorial ${catkin_LIBRARIES} Qt5::Widgets)
+    target_link_libraries(rqt_tutorial ${catkin_LIBRARIES} Qt5::Widgets ${OpenCV_LIBRARIES})
 
     find_package(class_loader)
     class_loader_hide_library_symbols(rqt_tutorial)

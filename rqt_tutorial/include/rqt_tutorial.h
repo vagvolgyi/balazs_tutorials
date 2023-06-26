@@ -3,8 +3,13 @@
 
 #include <rqt_gui_cpp/plugin.h>
 
-#include <ui_rqt_tutorial.h>
+#include <ros/ros.h>
 
+
+// Forward declarations
+namespace Ui {
+    class RQTTutorialWidget;
+}
 
 namespace balazs_tutorials {
 
@@ -18,9 +23,18 @@ public:
     virtual void initPlugin(qt_gui_cpp::PluginContext& context);
     virtual void shutdownPlugin();
 
+protected slots:
+    void onOptionsChanged(int option);
+
+// ROS callbacks
 protected:
-    Ui::RQTTutorialWidget Ui_;
+    void SubscriberCallback();
+
+protected:
+    Ui::RQTTutorialWidget* Ui;
     QWidget* Widget;
+
+    ros::Subscriber Sub;
 };
 
 } // balazs_tutorials
